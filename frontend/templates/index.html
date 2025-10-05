@@ -4,20 +4,43 @@
   <div class="col-12 col-lg-5">
     <div class="card p-3">
       <h5 class="mb-3" data-i18n="live">Live status</h5>
+      <form class="row g-2 mb-3" action="/plan" method="get">
+        <div class="col-auto">
+          <select name="from_stop" class="form-select">
+            <option>STOP_A</option>
+            <option>STOP_B</option>
+            <option>STOP_C</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <select name="to_stop" class="form-select">
+            <option>STOP_B</option>
+            <option>STOP_C</option>
+            <option>STOP_A</option>
+          </select>
+        </div>
+        <input type="hidden" name="depart_at" id="depart_at">
+        <div class="col-auto"><button class="btn btn-outline-primary" type="submit">Plan</button></div>
+      </form>
+      <script>
+        document.getElementById('depart_at').value = (function () {
+          const d = new Date(); return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+        })();
+      </script>
       <ul class="list-group list-group-flush">
         {% for line in status.lines %}
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            <div><strong>Route {{ line.route_id }}</strong></div>
-            {% if line.status == "on_time" %}
-              <span class="badge on-time">On time</span>
-            {% elif line.status == "delayed" %}
-              <span class="badge delayed">Delayed ({{ line.delay_min }}’)</span>
-            {% else %}
-              <span class="badge alert">Alert</span>
-            {% endif %}
-          </li>
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div><strong>Route {{ line.route_id }}</strong></div>
+          {% if line.status == "on_time" %}
+          <span class="badge on-time">On time</span>
+          {% elif line.status == "delayed" %}
+          <span class="badge delayed">Delayed ({{ line.delay_min }}’)</span>
+          {% else %}
+          <span class="badge alert">Alert</span>
+          {% endif %}
+        </li>
         {% else %}
-          <li class="list-group-item text-muted">No data (demo)</li>
+        <li class="list-group-item text-muted">No data (demo)</li>
         {% endfor %}
       </ul>
       <div class="mt-3 d-flex gap-2">
@@ -34,33 +57,33 @@
     </div>
   </div>
   <div class="alert alert-info d-flex align-items-center gap-2" role="alert">
-  <strong class="me-2">Bulletins</strong>
-  <div class="flex-grow-1">
-    {% for b in bulletins.bulletins %}
+    <strong class="me-2">Bulletins</strong>
+    <div class="flex-grow-1">
+      {% for b in bulletins.bulletins %}
       <span class="me-3">[{{ b.severity|upper }}] {{ b.title }}</span>
-    {% else %}
+      {% else %}
       <span class="text-muted">No bulletins</span>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
-<div id="crowd" class="small text-muted mt-2"></div>
-<script>
-  fetch("/_demo/crowd_count").then(r=>r.json()).then(d=>{
-    const entries = Object.entries(d.counts || {}).filter(([k,v])=>v>=3);
-    if(entries.length){
-      document.getElementById('crowd').innerHTML =
-        '⚠ Crowd signal near: ' + entries.map(([k,v])=> `${k} (${v})`).join(', ');
-    }
-  }).catch(()=>{});
-</script>
+  <div id="crowd" class="small text-muted mt-2"></div>
+  <script>
+    fetch("/_demo/crowd_count").then(r => r.json()).then(d => {
+      const entries = Object.entries(d.counts || {}).filter(([k, v]) => v >= 3);
+      if (entries.length) {
+        document.getElementById('crowd').innerHTML =
+          '⚠ Crowd signal near: ' + entries.map(([k, v]) => `${k} (${v})`).join(', ');
+      }
+    }).catch(() => { });
+  </script>
 
 </div>
 {% endblock %}
 <script>
-  (function(){
-    const bind = JSON.parse(localStorage.getItem('spoko_binding')||'null');
+  (function () {
+    const bind = JSON.parse(localStorage.getItem('spoko_binding') || 'null');
     if (!bind || !bind.line) return;
-    document.querySelectorAll('.list-group-item').forEach(li=>{
+    document.querySelectorAll('.list-group-item').forEach(li => {
       const txt = li.innerText || '';
       if (!txt.includes('Route ' + bind.line)) li.style.opacity = .35;
     });

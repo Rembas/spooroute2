@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3">
+  <h5 class="mb-3">Plan {{ qs.from }} → {{ qs.to }}</h5>
+  {% if data.itineraries and data.itineraries|length>0 %}
+    <ul class="list-group list-group-flush">
+      {% for it in data.itineraries %}
+        <li class="list-group-item">
+          <div><strong>Total:</strong> {{ (it.total_time//60) }} min · Transfers: {{ it.transfers }}</div>
+          <ol class="mt-2">
+            {% for lg in it.legs %}
+              <li>
+                {% if lg.mode == 'walk' %}
+                  Walk {{ lg.from_stop }} → {{ lg.to_stop }} {% if lg.distance_m %}({{ lg.distance_m }} m){% endif %}
+                {% else %}
+                  {{ lg.route_id }} (trip {{ lg.trip_id }}) {{ lg.from_stop }} → {{ lg.to_stop }}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ol>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted mb-0">No result.</p>
+  {% endif %}
+  <a class="btn btn-outline-secondary mt-3" href="/">← Back</a>
+</div>
+{% endblock %}

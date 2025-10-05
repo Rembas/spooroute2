@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from app.application.services import JourneyRadarService, get_service
 from app.application.services import DEMO_SCENARIO
 
@@ -27,3 +27,13 @@ async def set_scenario(s: str):
     if s in ("normal","heavy"):
         DEMO_SCENARIO = s
     return {"scenario": DEMO_SCENARIO}
+
+
+@router.get("/plan")
+async def plan(
+    from_stop: str = Query(...),
+    to_stop: str = Query(...),
+    depart_at: int = Query(..., description="seconds since midnight"),
+    svc: JourneyRadarService = Depends(get_service)
+):
+    return await svc.plan(from_stop, to_stop, depart_at)

@@ -76,6 +76,21 @@ def create_app():
         ]
         return render_template("admin/feeds.html", feeds=feeds)
 
+    @app.route("/plan")
+    def plan_view():
+        from_stop = request.args.get("from_stop","STOP_A")
+        to_stop = request.args.get("to_stop","STOP_B")
+        depart_at = int(request.args.get("depart_at","32400"))
+        try:
+            r = requests.get(f"{API_BASE}/api/v1/plan", params={
+                "from_stop": from_stop,
+                "to_stop": to_stop,
+                "depart_at": depart_at
+            }, timeout=3)
+            data = r.json()
+        except Exception:
+            data = {"itineraries": []}
+        return render_template("plan.html", data=data, qs={"from":from_stop, "to":to_stop})
 
 
 
