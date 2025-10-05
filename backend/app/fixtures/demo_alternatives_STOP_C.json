@@ -1,0 +1,21 @@
+{
+    "from_stop": "STOP_C",
+    "alternatives": [
+        {
+            "route_id": "22",
+            "stop_id": "STOP_B",
+            "stop_name": "Old Town",
+            "depart_in_min": 5,
+            "distance_m": 260,
+            "changes": 0
+        },
+        {
+            "route_id": "18",
+            "stop_id": "STOP_A",
+            "stop_name": "Plac Wolnica",
+            "depart_in_min": 9,
+            "distance_m": 300,
+            "changes": 1
+        }
+    ]
+}

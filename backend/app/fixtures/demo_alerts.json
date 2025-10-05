@@ -1,0 +1,12 @@
+{
+  "alerts": [
+    {
+      "id": "A-1001",
+      "severity": "info",
+      "text": "Maintenance on Route 7 from 19:00 to 22:00",
+      "route_ids": [
+        "7"
+      ]
+    }
+  ]
+}

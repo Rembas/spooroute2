@@ -1,0 +1,21 @@
+{
+    "from_stop": "STOP_A",
+    "alternatives": [
+        {
+            "route_id": "3",
+            "stop_id": "STOP_B",
+            "stop_name": "Old Town",
+            "depart_in_min": 4,
+            "distance_m": 250,
+            "changes": 0
+        },
+        {
+            "route_id": "22",
+            "stop_id": "STOP_C",
+            "stop_name": "Kazimierz",
+            "depart_in_min": 7,
+            "distance_m": 180,
+            "changes": 0
+        }
+    ]
+}

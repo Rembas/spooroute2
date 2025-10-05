@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3">
+  <h5>Feedback</h5>
+  {% if feedback and feedback|length > 0 %}
+    <ul class="list-group list-group-flush">
+      {% for r in feedback %}
+      <li class="list-group-item">
+        <div class="d-flex justify-content-between">
+          <div><strong>{{ r.type|capitalize }}</strong> · Line {{ r.line or "—" }} · Stop {{ r.stop_id or "—" }}</div>
+        </div>
+        <div class="mt-1 text-muted">{{ r.text }}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted mb-0">No feedback yet (demo).</p>
+  {% endif %}
+</div>
+{% endblock %}

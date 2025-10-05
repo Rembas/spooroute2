@@ -1,0 +1,21 @@
+{
+    "from_stop": "STOP_B",
+    "alternatives": [
+        {
+            "route_id": "52",
+            "stop_id": "STOP_A",
+            "stop_name": "Plac Wolnica",
+            "depart_in_min": 3,
+            "distance_m": 320,
+            "changes": 0
+        },
+        {
+            "route_id": "3",
+            "stop_id": "STOP_C",
+            "stop_name": "Kazimierz",
+            "depart_in_min": 6,
+            "distance_m": 400,
+            "changes": 1
+        }
+    ]
+}

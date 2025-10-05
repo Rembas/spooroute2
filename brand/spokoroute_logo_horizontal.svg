@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 360" width="2000" height="514">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E40AF"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(24,24)">
+    <rect x="0" y="0" width="312" height="312" rx="64" fill="url(#bg)"/>
+    <path d="M32,252 C104,196 164,212 220,152 C264,104 286,76 304,48"
+          fill="none" stroke="#FFFFFF" stroke-width="12"
+          stroke-linecap="round" stroke-dasharray="6 18"/>
+    <circle cx="84" cy="226" r="8" fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="208" cy="170" r="8" fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="292" cy="58" r="8" fill="#FFFFFF" opacity="0.95"/>
+    <text x="156" y="210" text-anchor="middle"
+          font-family="Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="120" font-weight="800" fill="#FFFFFF" opacity="0.94">SR</text>
+  </g>
+  <g transform="translate(370, 95)">
+    <text x="0" y="0"
+          font-family="Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="120" font-weight="800" fill="#0F172A">Spoko</text>
+    <text x="420" y="0"
+          font-family="Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="120" font-weight="800" fill="#06B6D4">Route</text>
+    <text x="4" y="84"
+          font-family="Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+          font-size="34" font-weight="600" fill="#475569">Arrive calm, every time.</text>
+  </g>
+</svg>

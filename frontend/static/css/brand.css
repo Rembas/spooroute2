@@ -1,0 +1,26 @@
+/* SpokoRoute brand tokens */
+:root{
+  --sr-indigo-700:#1E40AF;
+  --sr-cyan-500:#06B6D4;
+  --sr-amber-500:#F59E0B;
+  --sr-green-600:#16A34A;
+  --sr-red-600:#DC2626;
+  --sr-slate-900:#0F172A;
+  --sr-slate-700:#334155;
+  --sr-slate-100:#F1F5F9;
+  --sr-white:#FFFFFF;
+}
+body{ color:var(--sr-slate-700); background:var(--sr-slate-100); }
+.brand-title{ color:var(--sr-slate-900); font-weight:800; }
+.brand-accent{ color:var(--sr-cyan-500); }
+.badge{ border-radius:9999px; padding:0.25rem 0.6rem; font-weight:600; font-size:0.85rem; }
+.badge.on-time{ background:var(--sr-green-600); color:var(--sr-white); }
+.badge.delayed{ background:var(--sr-red-600); color:var(--sr-white); }
+.badge.alert{ background:var(--sr-amber-500); color:var(--sr-slate-900); }
+.button-primary{
+  background:linear-gradient(135deg, var(--sr-indigo-700), var(--sr-cyan-500));
+  color:var(--sr-white); border:0; border-radius:9999px; padding:0.75rem 1.25rem; font-weight:700;
+  box-shadow:0 8px 24px rgba(2,132,199,.35);
+}
+.button-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(2,132,199,.45); }
+.card{ background:#fff; border-radius:1rem; padding:1rem 1.25rem; box-shadow:0 8px 28px rgba(2,6,23,.08); }

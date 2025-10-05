@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h5>Feed Manager</h5>
+  <table class="table">
+    <thead><tr><th>Name</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for f in feeds %}
+      <tr>
+        <td>{{ f.name }}</td>
+        <td>{{ f.status }}</td>
+        <td><button class="btn btn-sm btn-primary" disabled>Resync</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<form class="d-flex gap-2" onsubmit="return false;">
+  <button class="btn btn-sm btn-outline-secondary" onclick="fetch('/api/v1/_demo/scenario?s=normal',{method:'POST'}).then(()=>alert('Normal set'))">Normal</button>
+  <button class="btn btn-sm btn-outline-danger" onclick="fetch('/api/v1/_demo/scenario?s=heavy',{method:'POST'}).then(()=>alert('Heavy set'))">Heavy delays</button>
+</form>
+{% endblock %}

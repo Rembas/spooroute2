@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3">
+  <h5 class="mb-3">Report a problem</h5>
+
+  {% if error %}
+    <div class="alert alert-warning">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" action="/report" class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label">Line (optional)</label>
+      <input name="line" class="form-control" placeholder="e.g. 52">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Stop ID (optional)</label>
+      <input name="stop_id" class="form-control" placeholder="e.g. STOP_A">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Type</label>
+      <select name="type" class="form-select">
+        <option value="delay">Delay</option>
+        <option value="disruption">Disruption</option>
+        <option value="other" selected>Other</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <label class="form-label">What happened? <span class="text-muted small">(required)</span></label>
+      <textarea name="text" class="form-control" rows="4" placeholder="Short description..."></textarea>
+    </div>
+    <div class="col-12 d-flex gap-2">
+      <button class="btn btn-primary" type="submit">Send report</button>
+      <a class="btn btn-outline-secondary" href="/">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

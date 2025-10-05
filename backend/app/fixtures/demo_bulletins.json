@@ -1,0 +1,21 @@
+{
+    "bulletins": [
+        {
+            "id": "B-001",
+            "severity": "info",
+            "title": "Track maintenance tonight 19:00–22:00",
+            "routes": [
+                "7"
+            ]
+        },
+        {
+            "id": "B-002",
+            "severity": "warning",
+            "title": "Diversion near Plac Wolnica",
+            "routes": [
+                "3",
+                "22"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3">
+  <h5 class="mb-3">Thanks for your report!</h5>
+  <p class="text-muted">We’ve received your message. For the demo, it isn’t stored permanently.</p>
+  <div class="border rounded p-3 bg-light">
+    <div><strong>Type:</strong> {{ data.type }}</div>
+    <div><strong>Line:</strong> {{ data.line or "—" }}</div>
+    <div><strong>Stop:</strong> {{ data.stop_id or "—" }}</div>
+    <div class="mt-2"><strong>Text:</strong><br>{{ data.text }}</div>
+  </div>
+  <a class="btn btn-primary mt-3" href="/">Back to home</a>
+</div>
+{% endblock %}

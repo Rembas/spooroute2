@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3">
+  <h5 class="mb-3">Alternatives from {{ data.from_stop }}</h5>
+  <ul class="list-group list-group-flush" id="alts">
+    {% for alt in data.alternatives %}
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div>
+          <strong>Route {{ alt.route_id }}</strong> → {{ alt.stop_name }}
+          <div class="small text-muted">
+            {{ alt.distance_m }} m • dep in {{ alt.depart_in_min }}’ • changes: {{ alt.changes }}
+            <span class="ms-2 badge" data-decision></span>
+          </div>
+        </div>
+        <a class="btn btn-outline-primary btn-sm" href="#">Go</a>
+      </li>
+    {% else %}
+      <li class="list-group-item text-muted">No alternatives found</li>
+    {% endfor %}
+  </ul>
+</div>
+<script>
+  // euristica: 1.4 m/s ~ 84 m/min; buffer sicurezza = 2 min
+  const SPEED_MPM = 84, BUFFER_MIN = 2;
+  document.querySelectorAll('#alts li').forEach(li=>{
+    const txt = li.innerText;
+    const m = txt.match(/(\d+)\s*m.*dep in\s+(\d+).*?/i);
+    if(!m) return;
+    const dist = parseInt(m[1],10), dep = parseInt(m[2],10);
+    const walkMin = Math.ceil(dist / SPEED_MPM);
+    const decision = li.querySelector('[data-decision]');
+    if (dep < walkMin + BUFFER_MIN) { decision.textContent='RUN'; decision.className='badge delayed'; }
+    else if (dep <= walkMin + BUFFER_MIN + 2) { decision.textContent='OK'; decision.className='badge on-time'; }
+    else { decision.textContent='SWITCH'; decision.className='badge alert'; }
+  });
+</script>
+{% endblock %}

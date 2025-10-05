@@ -1,0 +1,19 @@
+{
+    "lines": [
+        {
+            "route_id": "52",
+            "status": "delayed",
+            "delay_min": 25
+        },
+        {
+            "route_id": "3",
+            "status": "delayed",
+            "delay_min": 12
+        },
+        {
+            "route_id": "22",
+            "status": "on_time",
+            "delay_min": 0
+        }
+    ]
+}
